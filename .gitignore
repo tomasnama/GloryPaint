@@ -1,0 +1,5 @@
+/.project
+/npm-debug.log
+/.tern-project
+.DS_Store
+/platforms/

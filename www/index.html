@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.css" />
+<link rel="stylesheet" href="./css/catappmobile.css" />
+<link rel="stylesheet" href="./css/jquery.mobile.icons.css" />
+<script type="text/javascript" src="./js/jquery-2.1.4.js"></script> 
+<script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.pushStateEnabled = false;
+    });
+</script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="./js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="./js/angular.js"></script>
+<script type="text/javascript" src="./js/angular-translate.min.js"></script>
+<script type="text/javascript" src="./js/translations.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body ng-app="Drawing">
+	<div data-role="page" id="page"  ng-controller="Ctrl">
+
+		<!--  panel menu -->
+		<div data-role="panel" id="menu" data-position="left" data-display="overlay" style="background-color: #d0d6ff;">
+		    <h3 translate="MENU" style="float: left;"></h3>
+		    <div style="text-align: right; vertical-align: top; float: right;" >
+				<a href="#header" data-rel="close"
+			   	   class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-b ui-btn-inline"></a>
+			 </div>
+			 <div style="width: 100%; float: left;" >
+				 <label for="slider-size" style="width: 75px; float: left;" translate="SIZE"></label>
+				 <div style="width: 165px; float: left;" >
+				 	<input type="range" name="slider-size" id="slider-size" value="2" min="1" max="25" step="1" 
+				 		   data-highlight="false" ng-model="sizeValue" ng-change="changeSize()">
+				 </div>
+			 </div>
+			 <div style="width: 100%; float: left;" >
+				 <label for="color" style="width: 75px; float: left;" translate="COLOR"></label>
+				 <div style="width: 165px; float: left;" >
+				 	<input id="color" type="color" name="color" ng-model="colorValue" ng-change="changeColor()"/>
+				 </div>
+			 </div>
+			 <div style="width: 100%; float: left;">
+				 <fieldset data-role="controlgroup" data-iconpos="right" class="ui-group-theme-b" 
+				 		data-type="horizontal" style="width: 450px;">
+				 		<label for="radio-choice-c" style="width: 55px; text-align: center;">Lapiz</label>
+				        <input type="radio" ng-model="penValue" ng-change="changePen(penValue)" name="radio-choice-b" id="radio-choice-c" value="Lapiz" checked="checked">
+				        <label for="radio-choice-d" style="width: 55px; text-align: center;">Rotulador</label>
+				        <input type="radio" ng-model="penValue" ng-change="changePen(penValue)" name="radio-choice-b" id="radio-choice-d" value="Rotulador">
+				        <label for="radio-choice-e" style="width: 55px; text-align: center;">Goma</label>
+				        <input type="radio" ng-model="penValue" ng-change="changePen(penValue)" name="radio-choice-b" id="radio-choice-e" value="Goma">
+				</fieldset>
+			</div>
+			<a href="#header" data-rel="close" style="width: 75%; text-align: left; "
+			   class="ui-btn ui-shadow ui-corner-all ui-icon-delete2 ui-btn-icon-left ui-btn-b ui-btn-inline"
+			   ng-click="clean()" translate="CLEAN"></a>
+		</div>
+		
+		<!-- header -->
+		<div  id="topMenu"
+			style="position: absolute; top: 0; left: 5px; width: 40px; height: 40px; z-index: 1000;">
+			<a href="#menu"
+				class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext ui-btn-b ui-btn-inline"></a>
+		</div>
+
+		<!-- body -->
+		<div id="drawingDiv" style="background-color: #FFFFFF;" class="page disable-scrolling">
+		</div>
+	</div>
+	<script type="text/javascript">
+		onLoad()
+	</script>
+</body>
